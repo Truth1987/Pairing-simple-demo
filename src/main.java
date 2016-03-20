@@ -5,7 +5,7 @@ import uk.ac.ic.doc.jpair.api.Pairing;
 import uk.ac.ic.doc.jpair.pairing.BigInt;
 import uk.ac.ic.doc.jpair.pairing.PairingFactory;
 import uk.ac.ic.doc.jpair.pairing.Point;
-
+import org.apache.commons.codec.binary.Hex;
 public class main {
 
 	public static void main(String[] args) {
@@ -46,10 +46,11 @@ public class main {
 		
 		FieldElement Result_B = e.getGt().multiply(Result_B_1, Result_B_2);
 		
-		System.out.println("e((A+B)P, P)    : " + Result_A);
-		System.out.println("e( A   P, P)    : " + Result_B_1);
-		System.out.println("e(   B P, P)    : " + Result_B_2);
-		System.out.println("e(AP, P)e(BP, P): " + Result_B);
+		System.out.println("e((A+B)P, P)    : " + new String(Hex.encodeHex(Result_A.toByteArray())));
+		System.out.println("e( A   P, P)    : " + new String(Hex.encodeHex(Result_B_1.toByteArray())));
+		System.out.println("e(   B P, P)    : " + new String(Hex.encodeHex(Result_B_2.toByteArray())));
+		
+		System.out.println("e(AP, P)e(BP, P): " + new String(Hex.encodeHex(Result_B.toByteArray())));
 		
 		System.out.println("e((A+B)P, P) == e(AP, P)e(BP, P): " + Result_A.equals(Result_B));
 		
